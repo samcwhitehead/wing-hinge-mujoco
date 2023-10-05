@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<mujoco model="simplified01_auto">
+    <compiler angle="radian" coordinate="local"/>
+    <option timestep="0.002" iterations="100" integrator="Euler" cone="pyramidal" jacobian="dense" solver="Newton">
+        <flag sensornoise="enable"/>
+    </option>
+    <size nconmax="-1" njmax="-1" nuserdata="100"/>
+    <asset>
+        <mesh name="mesh_mount_plate" file="mesh_stl/mount_plate.stl"/>
+        <mesh name="mesh_pwp" file="mesh_stl/pwp.stl"/>
+        <mesh name="mesh_ax1_and_vein" file="mesh_stl/ax1_and_vein.stl"/>
+        <mesh name="mesh_wing" file="mesh_stl/wing.stl"/>
+        <mesh name="mesh_scu" file="mesh_stl/scu.stl"/>
+        <mesh name="mesh_mu1_001" file="mesh_stl/mu1_001.stl"/>
+        <mesh name="mesh_sla" file="mesh_stl/sla.stl"/>
+        <mesh name="mesh_ax3" file="mesh_stl/ax3.stl"/>
+        <mesh name="mesh_ax4" file="mesh_stl/ax4.stl"/>
+        <mesh name="mesh_mu1_002" file="mesh_stl/mu1_002.stl"/>
+    </asset>
+    <worldbody>
+        <body name="mount_plate" pos="-0.31843575835227966 1.7132188081741333 210.06983947753906" quat="1.0 0.0 0.0 0.0">
+            <geom name="mount_plate" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="1000.0" contype="1" conaffinity="1" mesh="mesh_mount_plate"/>
+            <body name="pwp" pos="32.242008209228516 -16.733434677124023 14.035629272460938" quat="1.0 0.0 0.0 0.0">
+                <geom name="pwp" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_pwp"/>
+                <body name="ax1_and_vein" pos="0.45813751220703125 0.03670692443847656 3.438018798828125" quat="1.0 0.0 0.0 0.0">
+                    <geom name="ax1_and_vein" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_ax1_and_vein"/>
+                    <body name="wing" pos="94.05638122558594 13.88726806640625 -0.008575439453125" quat="1.0 0.0 0.0 0.0">
+                        <geom name="wing" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_wing"/>
+                    </body>
+                    <joint name="ax1_and_vein_joint_alpha" type="hinge" axis="1.0 0.0 0.0" pos="2.121429443359375 -0.030618667602539062 -0.5782012939453125" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                    <joint name="ax1_and_vein_joint_phi" type="hinge" axis="-4.371138828673793e-08 1.0 0.0" pos="2.121429443359375 -0.030618667602539062 -0.5782012939453125" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                    <joint name="ax1_and_vein_joint_theta" type="hinge" axis="-4.371138828673793e-08 0.0 1.0" pos="2.121429443359375 -0.030618667602539062 -0.5782012939453125" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                </body>
+            </body>
+            <body name="scu" pos="19.613893508911133 -21.713220596313477 35.47630310058594" quat="1.0 0.0 0.0 0.0">
+                <geom name="scu" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.17434938251972198 0.17434938251972198 0.17434938251972198 1.0" density="1000.0" contype="1" conaffinity="1" mesh="mesh_scu"/>
+                <body name="mu1_001" pos="9.3072509765625 -0.0061244964599609375 -14.978973388671875" quat="1.0 0.0 0.0 0.0">
+                    <geom name="mu1_001" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_mu1_001"/>
+                    <joint name="mu1_001_joint_axis1" type="hinge" axis="1.0 0.0 0.0" pos="0.8966922760009766 0.005908966064453125 2.46697998046875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                    <joint name="mu1_001_joint_axis2" type="hinge" axis="-4.371138828673793e-08 1.0 0.0" pos="0.8966922760009766 0.005908966064453125 2.46697998046875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                </body>
+                <joint name="scu_joint" type="slide" axis="-4.371138828673793e-08 0.0 1.0" pos="-19.79545783996582 1.9073486328125e-06 18.123046875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+            </body>
+            <body name="sla" pos="23.602981567382812 -1.0469118356704712 23.60693359375" quat="1.0 0.0 0.0 0.0">
+                <geom name="sla" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.021615078672766685 0.37809109687805176 0.07705635577440262 1.0" density="1000.0" contype="1" conaffinity="1" mesh="mesh_sla"/>
+                <body name="ax3" pos="8.12858772277832 -2.379412889480591 -0.68353271484375" quat="1.0 0.0 0.0 0.0">
+                    <geom name="ax3" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_ax3"/>
+                    <body name="ax4" pos="8.705533981323242 -11.075343132019043 -4.805877685546875" quat="1.0 0.0 0.0 0.0">
+                        <geom name="ax4" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_ax4"/>
+                        <joint name="ax4_joint" type="slide" axis="0.5851859450340271 -0.7441059947013855 -0.3222788870334625" pos="-7.244293212890625 9.21168041229248 3.989654541015625" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                    </body>
+                    <joint name="ax3_joint_axis1" type="hinge" axis="1.1924880638503055e-08 -1.0 0.0" pos="-1.3476753234863281 1.7118550539016724 0.732635498046875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                    <joint name="ax3_joint_axis2" type="hinge" axis="-4.371138828673793e-08 0.0 -1.0" pos="-1.3476753234863281 1.7118550539016724 0.732635498046875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                </body>
+                <body name="mu1_002" pos="5.319728851318359 -10.672431945800781 -3.1098785400390625" quat="1.0 0.0 0.0 0.0">
+                    <geom name="mu1_002" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 1.0 1.0 1.0" density="0.0010000000474974513" contype="1" conaffinity="1" mesh="mesh_mu1_002"/>
+                    <joint name="mu1_002_joint_axis1" type="hinge" axis="1.0 0.0 0.0" pos="0.8957252502441406 0.0061244964599609375 2.43310546875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                    <joint name="mu1_002_joint_axis2" type="hinge" axis="-4.371138828673793e-08 0.0 -1.0" pos="0.8957252502441406 0.0061244964599609375 2.43310546875" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                </body>
+                <joint name="sla_joint" type="hinge" axis="1.0 0.0 0.0" pos="-23.7845458984375 19.33369255065918 0.0499267578125" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+            </body>
+            <joint name="mount_plate_joint" type="free" axis="1.0 0.0 0.0" pos="0.31843575835227966 -1.7132188081741333 -210.06983947753906" stiffness="0.0" damping="0.0" springref="0.0"/>
+        </body>
+        <geom name="floor" type="plane" size="335.9676818847656 178.78294372558594 0.41266173124313354 " pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" density="1000.0" rgba="0.5 0.5 0.5 0.1" contype="1" conaffinity="1"/>
+        <light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos="0.9 0.3 2.5" dir="-0.9 -0.3 -2.5"/>
+    </worldbody>
+    <actuator/>
+    <equality>
+        <connect body1="mu1_001" body2="ax1_and_vein" anchor="-0.8968143463134766 -0.00576019287109375 -2.466827392578125" solimp="1.0 1.0 0.0010000000474974513"/>
+        <connect body1="mu1_002" body2="ax1_and_vein" anchor="-0.895172119140625 -0.005763053894042969 -2.4670867919921875" solimp="1.0 1.0 0.0010000000474974513"/>
+        <connect body1="ax4" body2="ax1_and_vein" anchor="1.1846847534179688 -1.510329246520996 -0.6544036865234375" solimp="1.0 1.0 0.0010000000474974513"/>
+    </equality>
+    <sensor/>
+</mujoco>

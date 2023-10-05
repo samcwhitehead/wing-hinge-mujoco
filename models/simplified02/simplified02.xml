@@ -1,0 +1,88 @@
+<mujoco model="MuJoCo Model">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.005"/>
+  <default/>
+  <asset>
+    <texture type="2d" name="grid" builtin="checker" rgb1="0.1 0.2 0.3" rgb2="0.2 0.3 0.4" width="512" height="512"/>
+    <material name="color_0" rgba="0 0.33 0.5 1"/>
+    <material name="color_1" rgba="1 0.33 1 1"/>
+    <material name="color_2" rgba="0 1 1 1"/>
+    <material name="color_3" rgba="0.8 0.8 0.8 0.2"/>
+    <material name="color_4" rgba="1 0.67 0 1"/>
+    <material name="color_5" rgba="1 0 0 1"/>
+    <material name="color_6" rgba="0.33 0.67 0 1"/>
+    <material name="color_7" rgba="0.67 1 1 0.2"/>
+    <material name="color_8" rgba="0.67 0.67 0.5 1"/>
+    <material name="grid" texture="grid" texrepeat="10 10" reflectance="0.2"/>
+    <mesh name="mount_plate" file="./mesh_files/mount_plate.stl"/>
+    <mesh name="sla" file="./mesh_files/sla.stl"/>
+    <mesh name="scu" file="./mesh_files/scu.stl"/>
+    <mesh name="pwp" file="./mesh_files/pwp.stl"/>
+    <mesh name="mu1" file="./mesh_files/mu1.stl"/>
+    <mesh name="mu2" file="./mesh_files/mu1.stl"/>
+    <mesh name="ax1_and_vein" file="./mesh_files/ax1_and_vein.stl"/>
+    <mesh name="wing" file="./mesh_files/wing.stl"/>
+    <mesh name="ax3" file="./mesh_files/ax3.stl"/>
+    <mesh name="ax4" file="./mesh_files/ax4.stl"/>
+  </asset>
+  <worldbody>
+    <geom name="floor" size="2800 2800 0.05" type="plane" material="grid"/>
+    <light name="spotlight" target="mount_plate" pos="368.078 74.9719 420" dir="0 0 -1" cutoff="560" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2" mode="targetbodycom"/>
+    <body name="mount_plate" pos="0 0 0" gravcomp="0">
+      <joint name="mount_plate_joint" type="free"/>
+      <geom name="mount_plate_mesh" type="mesh" material="color_3" mesh="mount_plate"/>
+      <body name="sla" pos="-0.5 20 233.727" quat="6.31722e-09 0.707107 -0.707107 6.31722e-09" gravcomp="0">
+        <joint name="sla_joint" pos="0 0 0" axis="1.24159e-08 -1 0"/>
+        <geom name="sla_mesh" pos="0 0 0" type="mesh" material="color_4" mesh="sla"/>
+        <body name="mu1_002" pos="30.0052 -29.9982 0.691803" quat="-0.579011 -0.406104 0.405963 -0.578809" gravcomp="0">
+          <joint name="mu1_002_joint_axis1" pos="0 0 0" axis="-0.340548 -0.000118488 0.940227"/>
+          <joint name="mu1_002_joint_axis2" pos="0 0 0" axis="0.000348085 -1 5.47601e-08"/>
+          <geom name="mu1_002_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_2" mesh="mu2"/>
+        </body>
+        <body name="ax3" pos="20.0013 -30.5655 0.000815333" quat="-0.113056 -0.926969 0.331909 -0.133354" gravcomp="0">
+          <joint name="ax3_joint_axis1" pos="0 0 0" axis="0.744106 -0.645492 0.172181"/>
+          <joint name="ax3_joint_axis2" pos="0 0 0" axis="0.322279 0.121077 -0.93887"/>
+          <geom name="ax3_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_0" mesh="ax3"/>
+          <body name="ax4" pos="4.80347 -0.00220862 -0.0011374" quat="1 1.5195e-10 9.29818e-08 -9.9939e-07" gravcomp="0">
+            <joint name="ax4_joint" pos="0 0 0" axis="1 1.99878e-06 1.85964e-07" type="slide"/>
+            <geom name="ax4_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_8" mesh="ax4"/>
+          </body>
+        </body>
+      </body>
+      <body name="scu" pos="-0.5 -20 263.669" quat="0.5 -0.5 0.5 0.5" gravcomp="0">
+        <joint name="scu_joint" pos="0 0 0" axis="-1 -7.39295e-09 0" type="slide"/>
+        <geom name="scu_mesh" pos="0 0 0" type="mesh" material="color_5" mesh="scu"/>
+        <body name="mu1_001" pos="30.635 -29.9994 -0.000216836" quat="0.699594 0.693174 0.122876 0.122391" gravcomp="0">
+          <joint name="mu1_001_joint_axis1" pos="0 0 0" axis="-0.341597 -0.00906146 0.939803"/>
+          <joint name="mu1_001_joint_axis2" pos="0 0 0" axis="-0.00224963 0.999959 0.00882379"/>
+          <geom name="mu1_001_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_2" mesh="mu1"/>
+        </body>
+      </body>
+      <body name="pwp" pos="-0.5 -15.02 191.966" quat="0.5 0.5 -0.5 0.5" gravcomp="0">
+        <geom name="pwp_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_1" mesh="pwp"/>
+        <body name="ax1_and_vein" pos="34.9995 -35.0031 -0.00587196" quat="0.499914 -0.500101 0.499926 -0.500059" gravcomp="0">
+          <joint name="ax1_and_vein_joint_alpha" pos="0 0 0" axis="1 0.000320729 -3.09761e-05"/>
+          <joint name="ax1_and_vein_joint_phi" pos="0 0 0" axis="-0.000320727 1 5.39138e-05"/>
+          <joint name="ax1_and_vein_joint_theta" pos="0 0 0" axis="3.09934e-05 -5.39039e-05 1"/>
+          <geom name="ax1_and_vein_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_6" mesh="ax1_and_vein"/>
+          <body name="wing" pos="9.99962 -0.000263238 0.567584" quat="-5.31019e-07 1 -2.30722e-05 -2.83622e-06" gravcomp="0">
+            <geom name="wing_mesh" pos="0 0 0" type="mesh" density="0.001" material="color_7" mesh="wing"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <connect body1="mu1_001" body2="ax1_and_vein" anchor="5.24969 0.000142155 -0.000240209" solimp="1 1 0.001 0.5 2"/>
+    <connect body1="mu1_002" body2="ax1_and_vein" anchor="5.24937 -0.0048507 -0.0015326" solimp="1 1 0.001 0.5 2"/>
+    <connect body1="ax4" body2="ax1_and_vein" anchor="14.4075 -0.00228853 -0.0011724" solimp="1 1 0.001 0.5 2"/>
+  </equality>
+  <actuator>
+    <general name="sla_position" joint="sla_joint" actdim="0" biastype="affine" gainprm="-2147483648 0 0 0 0 0 0 0 0 0" biasprm="0 -2147483648 0 0 0 0 0 0 0 0"/>
+    <general name="sla_velocity" joint="sla_joint" actdim="0" biastype="affine" gainprm="-2147483648 0 0 0 0 0 0 0 0 0" biasprm="0 0 -2147483648 0 0 0 0 0 0 0"/>
+    <general name="scu_position" joint="scu_joint" actdim="0" biastype="affine" gainprm="600000000 0 0 0 0 0 0 0 0 0" biasprm="0 -600000000 0 0 0 0 0 0 0 0"/>
+    <general name="scu_velocity" joint="scu_joint" actdim="0" biastype="affine" gainprm="100000000 0 0 0 0 0 0 0 0 0" biasprm="0 0 -100000000 0 0 0 0 0 0 0"/>
+    <general name="ax4_position" joint="ax4_joint" actdim="0" biastype="affine" gainprm="300000 0 0 0 0 0 0 0 0 0" biasprm="0 -300000 0 0 0 0 0 0 0 0"/>
+    <general name="ax4_velocity" joint="ax4_joint" actdim="0" biastype="affine" gainprm="10000 0 0 0 0 0 0 0 0 0" biasprm="0 0 -10000 0 0 0 0 0 0 0"/>
+  </actuator>
+</mujoco>

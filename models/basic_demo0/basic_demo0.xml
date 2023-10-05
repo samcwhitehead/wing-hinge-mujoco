@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<mujoco model="test_basic0">
+    <compiler angle="radian" coordinate="local"/>
+    <option timestep="0.002" iterations="100" integrator="Euler" cone="pyramidal" jacobian="dense" solver="Newton">
+        <flag sensornoise="enable"/>
+    </option>
+    <size nconmax="-1" njmax="-1" nuserdata="100"/>
+    <asset>
+        <mesh name="mesh_Cube" file="mesh_stl/Cube.stl"/>
+        <mesh name="mesh_Sphere.001" file="mesh_stl/Sphere.001.stl"/>
+    </asset>
+    <worldbody>
+        <body name="red_box" pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0">
+            <geom name="red_box" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="1.0 0.0 0.001875498564913869 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_Cube"/>
+            <body name="green_sphere" pos="1.3320555686950684 0.9124094843864441 1.8887747526168823" quat="1.0 0.0 0.0 0.0">
+                <geom name="green_sphere" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.0 1.0 0.002928026719018817 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_Sphere.001"/>
+            </body>
+        </body>
+        <light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos="0.9 0.3 2.5" dir="-0.9 -0.3 -2.5"/>
+    </worldbody>
+    <actuator/>
+    <equality/>
+    <sensor/>
+</mujoco>

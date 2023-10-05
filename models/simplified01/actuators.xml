@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<mujoco model="actuators">
+    <actuator>
+        <position name="sla_position" joint="sla_joint" gear="1" forcelimited="false" ctrllimited="false" kp="6.0e11"/>
+        <velocity name="sla_velocity" joint="sla_joint" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e10"/>
+        <position name="scu_position" joint="scu_joint" gear="1" forcelimited="false" ctrllimited="false" kp="6.0e8"/>
+        <velocity name="scu_velocity" joint="scu_joint" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e8"/>
+        <position name="ax4_position" joint="ax4_joint" gear="1" forcelimited="false" ctrllimited="false" kp="3.0e5"/>
+        <velocity name="ax4_velocity" joint="ax4_joint" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e4"/>
+    </actuator>
+</mujoco>

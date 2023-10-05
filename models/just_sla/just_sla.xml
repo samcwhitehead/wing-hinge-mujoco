@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<mujoco model="just_sla">
+    <compiler angle="radian" coordinate="local"/>
+    <option timestep="0.002" iterations="100" integrator="Euler" cone="pyramidal" jacobian="dense" solver="Newton">
+        <flag sensornoise="enable"/>
+    </option>
+    <size nconmax="-1" njmax="-1" nuserdata="100"/>
+    <asset>
+        <mesh name="mesh_SLA_up" file="mesh_stl/SLA_up.stl"/>
+        <mesh name="mesh_SLA_down" file="mesh_stl/SLA_down.stl"/>
+    </asset>
+    <worldbody>
+        <geom name="floor" type="plane" size="9.139266967773438 13.406534194946289 0.009999999776482582 " pos="0.0 0.0 2.212449550628662" quat="1.0 0.0 0.0 0.0" mass="1.0" rgba="0.5 0.5 0.5 0.1" contype="1" conaffinity="1"/>
+        <body name="SLA_up" pos="-0.31763917207717896 -2.6561203002929688 9.310388565063477" quat="0.9992823004722595 -3.393695280351494e-08 -0.0378803014755249 -9.429858671694547e-09">
+            <geom name="SLA_up" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.0 0.15292608737945557 0.025186896324157715 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_SLA_up"/>
+            <joint name="sla_world_slide" type="slide" axis="-0.8595173954963684 -0.4222044348716736 0.2880525588989258" pos="-6.124224682935164e-07 5.604622970167839e-07 2.1686087166017387e-06" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+            <joint name="sla_world_hinge" type="hinge" axis="-1.1893912553787231 1.1162415742874146 0.9999716877937317" pos="-6.124224682935164e-07 5.604622970167839e-07 2.1686087166017387e-06" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+<!--            limited="true" range="-0.2617993950843811 0.2617993950843811"-->
+        </body>
+        <body name="SLA_down" pos="-0.7016940116882324 -2.8406200408935547 9.407469749450684" quat="0.9962834715843201 -1.8140097424179658e-08 0.08613518625497818 1.019755568876235e-08">
+            <geom name="SLA_down" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.11073798686265945 0.8000000715255737 0.27502915263175964 1.0" mass="0" contype="0" conaffinity="0" mesh="mesh_SLA_down"/>
+        </body>
+        <light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos="0.9 0.3 2.5" dir="-0.9 -0.3 -2.5"/>
+    </worldbody>
+    <contact>
+        <exclude body1="SLA_up" body2="SLA_down"/>
+    </contact>
+    <actuator>
+        <position name="SLA_trans_position" joint="sla_world_slide" gear="1" forcelimited="false" ctrllimited="false" kp="5.0e5"/>
+        <velocity name="SLA_trans_velocity" joint="sla_world_slide" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e2"/>
+        <position name="SLA_rot_position" joint="sla_world_hinge" gear="1" forcelimited="false" ctrllimited="false" kp="5.0e5"/>
+        <velocity name="SLA_rot_velocity" joint="sla_world_hinge" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e2"/>
+    </actuator>
+    <equality/>
+    <sensor/>
+</mujoco>

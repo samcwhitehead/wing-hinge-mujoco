@@ -1,0 +1,27 @@
+*~
+*.egg-info
+*.pyc
+*.swp
+*.lock
+*.hdf5
+*.FCStd1
+build
+dist
+__pycache__
+MUJOCO_LOG.TXT
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Blender
+*.blend
+*.blend1
+
+# PyCharm
+.idea/
+
+# Rendered images
+blender_files/render_images/
+
+# old folders
+old/

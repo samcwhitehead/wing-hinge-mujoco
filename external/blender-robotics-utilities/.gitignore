@@ -1,0 +1,4 @@
+*.blend1
+*.pyc
+mesh_stl/
+*.code-workspace

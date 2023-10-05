@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<mujoco model="hinge2">
+    <compiler angle="radian" coordinate="local"/>
+    <option timestep="0.002" iterations="100" integrator="RK4" cone="pyramidal" jacobian="dense" solver="Newton">
+        <flag sensornoise="enable"/>
+    </option>
+    <size nconmax="-1" njmax="-1" nuserdata="100"/>
+    <asset>
+        <mesh name="mesh_SLA_up" file="mesh_stl/SLA_up.stl"/>
+        <mesh name="mesh_PWPa_up" file="mesh_stl/PWPa_up.stl"/>
+        <mesh name="mesh_Ax2_up" file="mesh_stl/Ax2_up.stl"/>
+        <mesh name="mesh_Ax1_up" file="mesh_stl/Ax1_up.stl"/>
+    </asset>
+    <worldbody>
+        <light name="spotlight_ax2" mode="targetbodycom" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2" pos="0.0 0.0 1498.8400000000006" cutoff="29.97680000000001" target="Ax2_up"/>
+        <light name="spotlight_ax1" mode="targetbodycom" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2" pos="0.0 0.0 1498.8400000000006" cutoff="29.97680000000001" target="Ax1_up"/>
+        <light name="spotlight_sla" mode="targetbodycom" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2" pos="0.0 0.0 1498.8400000000006" cutoff="29.97680000000001" target="SLA_up"/>
+        <geom name="floor" type="plane" size="9.139266967773438 13.406534194946289 0.009999999776482582 " pos="0.0 0.0 2.212449550628662" quat="1.0 0.0 0.0 0.0" mass="1.0" rgba="0.5 0.5 0.5 0.1" contype="1" conaffinity="1"/>
+        <body name="PWPa_up" pos="-1.7355822324752808 -5.179568767547607 5.455790996551514" quat="0.9968165755271912 -0.03723352402448654 0.07046739757061005 -0.0021869433112442493">
+            <geom name="PWPa_up" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.012285938486456871 0.28314846754074097 0.5271150469779968 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_PWPa_up"/>
+            <body name="Ax2_up" pos="-0.7730238437652588 0.15919551253318787 2.3469276428222656" quat="0.7403810620307922 -0.5191711783409119 -0.4261459708213806 0.026399584487080574">
+                <geom name="Ax2_up" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.8796226382255554 0.14126305282115936 0.006512153893709183 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_Ax2_up"/>
+                <joint name="pwp_ax2_hinge" type="hinge" axis="0.567966639995575 0.2195018082857132 -0.5705394148826599" pos="-0.3414987623691559 -0.07680031657218933 -0.5712044835090637" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+                <body name="Ax1_up" pos="-0.08870711922645569 0.542894721031189 0.18086719512939453" quat="0.8283222913742065 0.4966866672039032 -0.0016052721766754985 -0.2591947615146637">
+                    <geom name="Ax1_up" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.3762623369693756 0.00477686058729887 0.0074990419670939445 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_Ax1_up"/>
+                        <joint name="ax2_ax1_hinge" type="ball" axis="0.7837247848510742 0.06768915057182312 -0.2783452570438385" pos="-0.11788266897201538 -0.11685505509376526 0.1767752468585968" stiffness="12.0" damping="5.0" springref="0.0" limited="false"/>
+                    <!--                    <joint name="ax2_ax1_hinge" type="hinge" axis="0.7837247848510742 0.06768915057182312 -0.2783452570438385" pos="-0.11788266897201538 -0.11685505509376526 0.1767752468585968" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>-->
+                </body>
+            </body>
+        </body>
+        <body name="SLA_up" pos="-0.08463375270366669 -2.783419132232666 10.609414100646973" quat="0.9992823004722595 -2.1147764428519622e-08 -0.0378803126513958 -9.38776167913602e-09">
+            <geom name="SLA_up" type="mesh" pos="0 0 0" quat="1 0 0 0" rgba="0.0 0.15292608737945557 0.025186896324157715 1.0" mass="1.0" contype="1" conaffinity="1" mesh="mesh_SLA_up"/>
+            <joint name="sla_world_hinge" type="hinge" axis="-0.6781812310218811 0.6611208915710449 0.32091987133026123" pos="-0.6427638530731201 0.18971019983291626 -0.7101889848709106" stiffness="0.0" damping="0.0" springref="0.0" limited="false"/>
+        </body>
+        <light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos="0.9 0.3 2.5" dir="-0.9 -0.3 -2.5"/>
+    </worldbody>
+    <contact>
+        <exclude body1="PWPa_up" body2="Ax2_up"/>
+        <exclude body1="Ax2_up" body2="Ax1_up"/>
+        <exclude body1="PWPa_up" body2="Ax1_up"/>
+        <exclude body1="PWPa_up" body2="SLA_up"/>
+        <exclude body1="SLA_up" body2="Ax2_up"/>
+        <exclude body1="SLA_up" body2="Ax1_up"/>
+    </contact>
+    <actuator>
+        <position name="SLA_position" joint="sla_world_hinge" gear="1" forcelimited="false" ctrllimited="false" kp="4.0e7"/>
+        <velocity name="SLA_velocity" joint="sla_world_hinge" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e2"/>
+<!--        <position name="SLA_position" joint="sla_world_hinge" gear="1" forcelimited="false" ctrllimited="false" kp="5.0e7"/>-->
+<!--        <velocity name="SLA_velocity" joint="sla_world_hinge" gear="1" forcelimited="false" ctrllimited="false" kv="1.0e4"/>-->
+    </actuator>
+    <equality>
+        <connect body1="SLA_up" body2="Ax1_up" anchor="-2.2993953227996826 -1.324325442314148 -3.702707290649414"/>
+    </equality>
+    <sensor/>
+</mujoco>
